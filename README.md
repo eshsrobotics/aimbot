@@ -1,4 +1,3 @@
-aimbot
-======
+# Aimbot
 
 Aerial assist robot.
