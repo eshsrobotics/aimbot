@@ -5,14 +5,16 @@ try:
 except ImportError:
   from pyfrc import wpilib
 
-stick = wpilib.Joystick(1)
-
-frontRightMotor = wpilib.Jaguar(1)
-frontLeftMotor = wpilib.Jaguar(2)
-backLeftMotor = wpilib.Jaguar(3)
-backRightMotor = wpilib.Jaguar(4)
-
 class MyRobot(wpilib.SimpleRobot):
+
+  def __init__(self):
+    super().__init__()
+
+    self.frontRightMotor = wpilib.Jaguar(1)
+    self.frontLeftMotor = wpilib.Jaguar(2)
+    self.backLeftMotor = wpilib.Jaguar(3)
+    self.backRightMotor = wpilib.Jaguar(4)
+    self.stick = wpilib.Joystick(1)
 
   def Autonomous(self):
   
@@ -29,9 +31,9 @@ class MyRobot(wpilib.SimpleRobot):
     while self.IsOperatorControl() and self.IsEnabled():
       dog.Feed()
 
-      forward = -stick.GetY()
-      right = stick.GetX()
-      clockwise = stick.GetZ() * 0.5
+      forward = -self.stick.GetY()
+      right = self.stick.GetX()
+      clockwise = self.stick.GetZ() * 0.5
 
       front_left = forward + clockwise + right
       front_right = forward - clockwise - right
@@ -52,10 +54,12 @@ class MyRobot(wpilib.SimpleRobot):
         back_left /= maxVal
         back_right /= maxVal
 
-      frontRightMotor.Set(front_right)
-      frontLeftMotor.Set(front_left)
-      backLeftMotor.Set(back_left)
-      backRightMotor.Set(back_right)
+      self.frontRightMotor.Set(front_right)
+      self.frontLeftMotor.Set(front_left)
+      self.backLeftMotor.Set(back_left)
+      self.backRightMotor.Set(back_right)
+
+      wpilib.Wait(0.04)
 
 
 def run():
