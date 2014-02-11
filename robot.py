@@ -12,16 +12,16 @@ class MyRobot(wpilib.SimpleRobot):
 
     self.stick = wpilib.Joystick(1)
 
-    self.frontRightMotor = wpilib.Jaguar(1)
-    self.frontLeftMotor = wpilib.Jaguar(2)
-    self.backLeftMotor = wpilib.Jaguar(3)
-    self.backRightMotor = wpilib.Jaguar(4)
+    self.front_right_motor = wpilib.Jaguar(1)
+    self.front_left_motor = wpilib.Jaguar(2)
+    self.back_left_motor = wpilib.Jaguar(3)
+    self.back_right_motor = wpilib.Jaguar(4)
 
     self.mecanum_drive = MecanumDrive(
-        self.frontRightMotor,
-        self.frontLeftMotor,
-        self.backRightMotor,
-        self.backLeftMotor,
+        self.front_right_motor,
+        self.front_left_motor,
+        self.back_right_motor,
+        self.back_left_motor,
         self.stick
       )
 
