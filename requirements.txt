@@ -1,1 +1,2 @@
-pyfrc
+pyfrc==2014.1.1
+pytest==2.5.1
