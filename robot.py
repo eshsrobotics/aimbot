@@ -31,7 +31,7 @@ class MyRobot(wpilib.SimpleRobot):
 
       forward = -stick.GetY()
       right = stick.GetX()
-      clockwise = stick.GetZ()
+      clockwise = stick.GetZ() * 0.5
 
       front_left = forward + clockwise + right
       front_right = forward - clockwise - right
