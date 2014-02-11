@@ -17,7 +17,13 @@ class MyRobot(wpilib.SimpleRobot):
     self.backLeftMotor = wpilib.Jaguar(3)
     self.backRightMotor = wpilib.Jaguar(4)
 
-    self.mecanum_drive = MecanumDrive(self.frontRightMotor, self.frontLeftMotor, self.backRightMotor, self.backLeftMotor, self.stick)
+    self.mecanum_drive = MecanumDrive(
+        self.frontRightMotor,
+        self.frontLeftMotor,
+        self.backRightMotor,
+        self.backLeftMotor,
+        self.stick
+      )
 
   def Autonomous(self):
   
