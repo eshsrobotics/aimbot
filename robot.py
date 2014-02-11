@@ -5,7 +5,7 @@ try:
 except ImportError:
   from pyfrc import wpilib
 
-class MyRobot(wpilib.SimpleRobot):
+class Aimbot(wpilib.SimpleRobot):
 
   def __init__(self):
     super().__init__()
@@ -46,7 +46,7 @@ class MyRobot(wpilib.SimpleRobot):
 
 
 def run():
-  robot = MyRobot()
+  robot = Aimbot()
   robot.StartCompetition()
   
   return robot
