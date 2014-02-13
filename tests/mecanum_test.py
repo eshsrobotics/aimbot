@@ -9,12 +9,12 @@ def test_mecanum_y(robot, wpilib):
 
       self.loop_count += 1
 
-      expected = -self.stick_prev
-
-      assert robot.front_right_motor.value == expected
-      assert robot.front_left_motor.value == expected
-      assert robot.back_left_motor.value == expected
-      assert robot.back_right_motor.value == expected
+      # All motors should spin forward. Right motors are
+      # reversed.
+      assert robot.front_right_motor.value == -self.stick_prev
+      assert robot.front_left_motor.value == self.stick_prev
+      assert robot.back_left_motor.value == self.stick_prev
+      assert robot.back_right_motor.value == -self.stick_prev
 
       robot.stick.y = (tm % 2.0) - 1.0
       self.stick_prev = robot.stick.y
@@ -38,8 +38,8 @@ def test_mecanum_x(robot, wpilib):
       self.loop_count += 1
 
       assert robot.front_right_motor.value == -self.stick_prev
-      assert robot.front_left_motor.value == self.stick_prev
-      assert robot.back_left_motor.value == -self.stick_prev
+      assert robot.front_left_motor.value == -self.stick_prev
+      assert robot.back_left_motor.value == self.stick_prev
       assert robot.back_right_motor.value == self.stick_prev
 
       robot.stick.x = (tm % 2.0) - 1.0
@@ -66,8 +66,8 @@ def test_mecanum_z(robot, wpilib):
       expected = self.stick_prev * 0.5
 
       assert robot.front_right_motor.value == -expected
-      assert robot.front_left_motor.value == expected
-      assert robot.back_left_motor.value == expected
+      assert robot.front_left_motor.value == -expected
+      assert robot.back_left_motor.value == -expected
       assert robot.back_right_motor.value == -expected
 
       robot.stick.z = (tm % 2.0) - 1.0

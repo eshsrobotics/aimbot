@@ -14,10 +14,10 @@ class MecanumDrive():
     right = self.stick.GetX()
     clockwise = self.stick.GetZ() * 0.5
 
-    front_left_val = forward + clockwise + right
     front_right_val = forward - clockwise - right
-    back_left_val = forward + clockwise - right
     back_right_val = forward - clockwise + right
+    front_left_val = forward + clockwise + right
+    back_left_val = forward + clockwise - right
 
     maxVal = math.fabs(front_left_val)
     if math.fabs(front_right_val) > maxVal:
@@ -34,6 +34,6 @@ class MecanumDrive():
       back_right_val /= maxVal
 
     self.front_right.Set(front_right_val)
-    self.front_left.Set(front_left_val)
-    self.back_left.Set(back_left_val)
+    self.front_left.Set(-front_left_val)
+    self.back_left.Set(-back_left_val)
     self.back_right.Set(back_right_val)
