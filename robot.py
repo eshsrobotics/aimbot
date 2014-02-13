@@ -13,9 +13,9 @@ class Aimbot(wpilib.SimpleRobot):
     self.stick = wpilib.Joystick(1)
 
     self.front_right_motor = wpilib.Jaguar(1)
-    self.front_left_motor = wpilib.Jaguar(2)
-    self.back_left_motor = wpilib.Jaguar(3)
-    self.back_right_motor = wpilib.Jaguar(4)
+    self.back_right_motor = wpilib.Jaguar(2)
+    self.front_left_motor = wpilib.Jaguar(3)
+    self.back_left_motor = wpilib.Jaguar(4)
 
     self.mecanum_drive = MecanumDrive(
         self.front_right_motor,
