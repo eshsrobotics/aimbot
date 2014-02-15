@@ -1,5 +1,5 @@
 from mecanum_drive import MecanumDrive
-
+from intake_control import IntakeControl
 try:
   import wpilib
 except ImportError:
