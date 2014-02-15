@@ -1,5 +1,6 @@
 from mecanum_drive import MecanumDrive
-from intake_control import IntakeControl
+from intake import Intake
+
 try:
   import wpilib
 except ImportError:
@@ -16,6 +17,7 @@ class Aimbot(wpilib.SimpleRobot):
     self.front_left_motor = wpilib.Jaguar(2)
     self.back_left_motor = wpilib.Jaguar(3)
     self.back_right_motor = wpilib.Jaguar(4)
+    self.intake_motor = wpilib.Jaguar(5)
 
     self.mecanum_drive = MecanumDrive(
         self.front_right_motor,
@@ -24,6 +26,8 @@ class Aimbot(wpilib.SimpleRobot):
         self.back_left_motor,
         self.stick
       )
+
+    self.intake = Intake(intake_motor)
 
   def Autonomous(self):
   
@@ -41,7 +45,8 @@ class Aimbot(wpilib.SimpleRobot):
       dog.Feed()
 
       self.mecanum_drive.iterate()
-
+      self.intake.iterate();
+      
       wpilib.Wait(0.04)
 
 
