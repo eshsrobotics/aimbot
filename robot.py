@@ -11,23 +11,25 @@ class Aimbot(wpilib.SimpleRobot):
   def __init__(self):
     super().__init__()
 
-    self.stick = wpilib.Joystick(1)
+    self.drive_stick = wpilib.Joystick(1)
+    self.arm_stick = wpilib.Joystick(2)
 
     self.front_right_motor = wpilib.Jaguar(1)
     self.front_left_motor = wpilib.Jaguar(2)
     self.back_left_motor = wpilib.Jaguar(3)
     self.back_right_motor = wpilib.Jaguar(4)
-    self.intake_motor = wpilib.Jaguar(5)
+    self.intake_wheels_motor = wpilib.Jaguar(5)
+    self.intake_arm_motor = wpilib.Jaguar(6)
 
     self.mecanum_drive = MecanumDrive(
         self.front_right_motor,
         self.front_left_motor,
         self.back_right_motor,
         self.back_left_motor,
-        self.stick
+        self.drive_stick
       )
 
-    self.intake = Intake(intake_motor)
+    self.intake = Intake(self.intake_wheels_motor,self.intake_wheels_motor,self.arm_stick)
 
   def Autonomous(self):
   
@@ -46,7 +48,7 @@ class Aimbot(wpilib.SimpleRobot):
 
       self.mecanum_drive.iterate()
       self.intake.iterate();
-      
+
       wpilib.Wait(0.04)
 
 
