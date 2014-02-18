@@ -1,6 +1,6 @@
 SERVO_TOP_VALUE = 1 #needs to be actually found
 SERVO_BOTTOM_VALUE = 0 #needs to be actually found
-class Intake():
+class Shooter():
   def __init__(self,first_motor,second_motor,servo,stick):
     self.first_motor = first_motor
     self.second_motor = second_motor
