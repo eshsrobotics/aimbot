@@ -1,9 +1,8 @@
 SERVO_TOP_VALUE = 1 #needs to be actually found
 SERVO_BOTTOM_VALUE = 0 #needs to be actually found
 class Shooter():
-  def __init__(self,first_motor,second_motor,servo,stick):
-    self.first_motor = first_motor
-    self.second_motor = second_motor
+  def __init__(self,main_motor,servo,stick):
+    self.main_motor = main_motor
     self.servo = servo
     self.servo_enabled = False
     self.stick = stick
@@ -19,4 +18,4 @@ class Shooter():
     else:
       self.servo.Set(SERVO_BOTTOM_VALUE)
     
-    #Stuff to control main motors
+    #Stuff to control main motor
