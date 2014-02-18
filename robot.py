@@ -1,5 +1,5 @@
 from mecanum_drive import MecanumDrive
-#from intake import Intake
+from intake import Intake
 
 try:
   import wpilib
@@ -12,14 +12,14 @@ class Aimbot(wpilib.SimpleRobot):
     super().__init__()
 
     self.drive_stick = wpilib.Joystick(1)
-    #self.arm_stick = wpilib.Joystick(2)
+    self.arm_stick = wpilib.Joystick(2)
 
     self.front_right_motor = wpilib.Jaguar(2)
     self.front_left_motor = wpilib.Jaguar(1)
     self.back_left_motor = wpilib.Jaguar(3)
     self.back_right_motor = wpilib.Jaguar(4)
-    #self.intake_wheels_motor = wpilib.Jaguar(5)
-    #self.intake_arm_motor = wpilib.Jaguar(6)
+    self.intake_wheels_motor = wpilib.Jaguar(5)
+    self.intake_arm_motor = wpilib.Jaguar(6)
 
     self.mecanum_drive = MecanumDrive(
         self.front_right_motor,
@@ -29,7 +29,7 @@ class Aimbot(wpilib.SimpleRobot):
         self.drive_stick
       )
 
-    #self.intake = Intake(self.intake_wheels_motor,self.intake_wheels_motor,self.arm_stick)
+    self.intake = Intake(self.intake_wheels_motor,self.intake_arm_motor,self.drive_stick)
 
   def Autonomous(self):
   
@@ -47,7 +47,7 @@ class Aimbot(wpilib.SimpleRobot):
       dog.Feed()
 
       self.mecanum_drive.iterate()
-      #self.intake.iterate();
+      self.intake.iterate();
 
       wpilib.Wait(0.04)
 
