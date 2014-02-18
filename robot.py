@@ -29,7 +29,7 @@ class Aimbot(wpilib.SimpleRobot):
         self.drive_stick
       )
 
-    self.intake = Intake(self.intake_wheels_motor,self.intake_arm_motor,self.drive_stick)
+    self.intake = Intake(self.intake_wheels_motor,self.intake_arm_motor,self.arm_stick)
 
   def Autonomous(self):
   
