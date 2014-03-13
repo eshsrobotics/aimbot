@@ -25,7 +25,7 @@ class Aimbot(wpilib.SimpleRobot):
 
     self.shooter_servo = wpilib.Servo(7)
     self.shooter_motor = wpilib.Jaguar(5)
-    self.encoder = wpilib.encoder(1,2,True,wpilib.ConterBase.k4x)
+    self.encoder = wpilib.Encoder(1, 2, True)
 
     self.mecanum_drive = MecanumDrive(
         self.front_right_motor,
@@ -36,8 +36,8 @@ class Aimbot(wpilib.SimpleRobot):
       )
 
     self.intake = Intake(self.intake_wheels_motor,
-      self.intake_arm_motor,
-      self.arm_stick
+        self.intake_arm_motor,
+        self.arm_stick
       )
 
     self.shooter = Shooter(self.shooter_motor,
@@ -64,6 +64,9 @@ class Aimbot(wpilib.SimpleRobot):
       self.mecanum_drive.iterate()
       self.intake.iterate();
       self.shooter.iterate();
+
+      if self.drive_stick.GetTrigger():
+        self.back_right_motor.Set(1.0)
 
       wpilib.Wait(0.04)
 
