@@ -6,11 +6,14 @@ class Intake():
     self.stick = stick
 
   def iterate(self):
-    self.arm.Set(self.stick.GetY())
+    if not self.stick.GetRawButton(2):
+      self.arm.Set(self.stick.GetY())
+
     wheels = 0
 
     if self.stick.GetRawButton(3):
       wheels = 1
     elif self.stick.GetRawButton(4):
       wheels = -1
+
     self.wheels.Set(wheels);

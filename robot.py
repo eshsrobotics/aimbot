@@ -43,7 +43,7 @@ class Aimbot(wpilib.SimpleRobot):
     self.shooter = Shooter(self.shooter_motor,
         self.encoder,
         self.shooter_servo,
-        self.drive_stick
+        self.arm_stick
       )
 
   def Autonomous(self):
