@@ -1,6 +1,7 @@
 from mecanum_drive import MecanumDrive
 from intake import Intake
 from shooter import Shooter
+from shooter_service import ShooterService
 
 try:
   import wpilib
@@ -43,6 +44,12 @@ class Aimbot(wpilib.SimpleRobot):
     self.shooter = Shooter(self.shooter_motor,
         self.encoder,
         self.shooter_servo,
+        self.arm_stick,
+        self.shooter_service
+      )
+
+    self.shooter_service = ShooterService(self.shooter_motor,
+        self.shooter_servo,
         self.arm_stick
       )
 
@@ -62,8 +69,9 @@ class Aimbot(wpilib.SimpleRobot):
       dog.Feed()
 
       self.mecanum_drive.iterate()
-      self.intake.iterate();
-      self.shooter.iterate();
+      self.intake.iterate()
+      self.shooter.iterate()
+      self.shooter_service.iterate()
 
       if self.drive_stick.GetTrigger():
         self.back_right_motor.Set(1.0)
