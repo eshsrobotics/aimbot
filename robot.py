@@ -1,3 +1,4 @@
+from autonomous import Autonomous
 from mecanum_drive import MecanumDrive
 from intake import Intake
 from shooter import Shooter
@@ -41,6 +42,11 @@ class Aimbot(wpilib.SimpleRobot):
         self.arm_stick
       )
 
+    self.shooter_service = ShooterService(self.shooter_motor,
+        self.shooter_servo,
+        self.arm_stick
+      )
+
     self.shooter = Shooter(self.shooter_motor,
         self.encoder,
         self.shooter_servo,
@@ -48,15 +54,22 @@ class Aimbot(wpilib.SimpleRobot):
         self.shooter_service
       )
 
-    self.shooter_service = ShooterService(self.shooter_motor,
-        self.shooter_servo,
-        self.arm_stick
+    self.autonomous = Autonomous(
+        self.shooter_service,
+        self.intake_arm_motor,
+        self.front_left_motor,
+        self.front_right_motor,
+        self.front_left_motor,
+        self.front_right_motor
       )
 
   def Autonomous(self):
 
     self.GetWatchdog().SetEnabled(False)
+    self.autonomous.reset()
+
     while self.IsAutonomous() and self.IsEnabled():
+      self.autonomous.iterate()
       wpilib.Wait(0.01)
 
   def OperatorControl(self):
@@ -75,6 +88,12 @@ class Aimbot(wpilib.SimpleRobot):
 
       if self.drive_stick.GetTrigger():
         self.back_right_motor.Set(1.0)
+
+      if self.arm_stick.GetRawButton(9):
+        self.front_left_motor.Set(1.0)
+        self.front_right_motor.Set(-1.0)
+        self.back_left_motor.Set(1.0)
+        self.back_right_motor.Set(-1.0)
 
       wpilib.Wait(0.04)
 
