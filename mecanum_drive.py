@@ -29,6 +29,9 @@ class MecanumDrive():
     forward = self.stick.GetY()
     right = -self.stick.GetX()
     clockwise = self.stick.GetZ()
+
+    if self.stick.GetTrigger():
+      clockwise = self.stick.GetZ() * 0.5
   
     front_right_val = forward - clockwise + right
     back_right_val = forward - clockwise - right
