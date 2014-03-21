@@ -37,21 +37,17 @@ class ShooterService():
       self.servo.Set(LOWERING_SERVO_TOP_VALUE)
 
     if self.shootingTotal > datetime.now():
-      print("shooting iteration")
 
       if self.shootingServoDown < datetime.now() and self.shootingArmUp < datetime.now():
-        print("enabling arm up")
         self.shootingArmUp = datetime.now() + SHOOTING_ARM_UP_PERIOD
     else:
       self.shooting = False
 
     if self.shootingServoDown > datetime.now():
-      print("servo down")
       self.main_motor.Set(-0.5)
       self.servo.Set(LOWERING_SERVO_BOTTOM_VALUE)
 
     if self.shootingArmUp > datetime.now():
-      print("shooting arm up")
       self.main_motor.Set(1)
 
   def lower(self):

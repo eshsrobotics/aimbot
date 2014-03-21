@@ -36,11 +36,13 @@ class RetractThrower():
       self.shooter_service.lower()
       self.started = True
 
+    self.shooter_service.iterate()
+
   def end(self):
     self.started = False
 
   def transition(self):
-    return self.shooter_service.lowering
+    return not self.shooter_service.lowering
 
 class MoveForward():
 
@@ -60,11 +62,10 @@ class MoveForward():
       self.started = True
       self.timestop = datetime.now() + self.OPERATION_TIME
 
-    if self.timestop > datetime.now():
-      self.front_right.Set(self.SPEED)
-      self.front_left.Set(-self.SPEED)
-      self.back_left.Set(-self.SPEED)
-      self.back_right.Set(self.SPEED)
+    self.front_right.Set(self.SPEED)
+    self.front_left.Set(-self.SPEED)
+    self.back_left.Set(-self.SPEED)
+    self.back_right.Set(self.SPEED)
 
   def end(self):
     self.started = False
@@ -74,7 +75,7 @@ class MoveForward():
     self.back_right.Set(0)
 
   def transition(self):
-    return self.timestop > datetime.now()
+    return datetime.now() > self.timestop
 
 class Stop():
   def __init__(self):
@@ -103,6 +104,8 @@ class Throw():
       print('started throw state')
       self.shooter_service.shoot()
       self.started = True
+
+    self.shooter_service.iterate()
       
   def end(self):
     self.started = False
