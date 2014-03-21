@@ -44,7 +44,7 @@ class ShooterService():
       self.shooting = False
 
     if self.shootingServoDown > datetime.now():
-      self.main_motor.Set(-0.5)
+      self.main_motor.Set(-1)
       self.servo.Set(LOWERING_SERVO_BOTTOM_VALUE)
 
     if self.shootingArmUp > datetime.now():
