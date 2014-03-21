@@ -86,15 +86,6 @@ class Aimbot(wpilib.SimpleRobot):
       self.shooter.iterate()
       self.shooter_service.iterate()
 
-      if self.drive_stick.GetTrigger():
-        self.back_right_motor.Set(1.0)
-
-      if self.arm_stick.GetRawButton(9):
-        self.front_left_motor.Set(1.0)
-        self.front_right_motor.Set(-1.0)
-        self.back_left_motor.Set(1.0)
-        self.back_right_motor.Set(-1.0)
-
       wpilib.Wait(0.04)
 
 
