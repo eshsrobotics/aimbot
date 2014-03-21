@@ -39,10 +39,10 @@ class MecanumDrive():
     back_left_val = forward + clockwise + right
 
     if self.inverse:
-      front_right_val = forward + clockwise - right
-      back_right_val = forward + clockwise + right
-      front_left_val = forward - clockwise + right
-      back_left_val = forward - clockwise - right
+      front_right_val = -forward + clockwise - right
+      back_right_val = -forward + clockwise + right
+      front_left_val = -forward - clockwise + right
+      back_left_val = -forward - clockwise - right
   
     maxVal = math.fabs(front_left_val)
     if math.fabs(front_right_val) > maxVal:
