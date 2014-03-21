@@ -69,7 +69,7 @@ class Aimbot(wpilib.SimpleRobot):
     self.autonomous.reset()
 
     while self.IsAutonomous() and self.IsEnabled():
-      self.autonomous.iterate()
+      #self.autonomous.iterate()
       wpilib.Wait(0.01)
 
   def OperatorControl(self):

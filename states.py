@@ -79,7 +79,7 @@ class MoveForward():
 
 class Stop():
   def __init__(self):
-    self.OPERATION_TIME = timedelta(seconds=1)
+    self.OPERATION_TIME = timedelta(seconds=2)
     self.started = False
 
   def iterate(self):
