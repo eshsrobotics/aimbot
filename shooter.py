@@ -30,10 +30,6 @@ class Shooter():
   def iterate(self):
     self.main_motor.Set(0)
 
-    if self.stick.GetRawButton(11):
-      self.lowering = True
-      self.main_motor.Set(-0.5)
-
     if self.stick.GetRawButton(5):
       self.servo.Set(LOWERING_SERVO_BOTTOM_VALUE)
     elif self.stick.GetRawButton(6):

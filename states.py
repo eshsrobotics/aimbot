@@ -96,19 +96,20 @@ class Stop():
 
 class Throw():
   def __init__(self, shooter_service):
-    self.started = False
     self.shooter_service = shooter_service
+    self.started = False
 
   def iterate(self):
     if not self.started:
-      print('started throw state')
+      print('started shoot state')
       self.shooter_service.shoot()
       self.started = True
 
     self.shooter_service.iterate()
-      
+
   def end(self):
     self.started = False
 
   def transition(self):
-    return self.shooter_service.shooting
+    return not self.shooter_service.shooting
+
